@@ -6,16 +6,37 @@ import { Loader } from './';
 
 const commonStyles = "flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white p-5";
 
+const Input = (placeholder: string, name: string, type: string, value: any, handleChange: any) => {
+  return (
+    <input 
+      placeholder={placeholder}
+      type={type}
+      step="0.0001"
+      value={value}
+      onChange={(e) => handleChange(e, name)}
+      className="my-2 w-full rounded-md p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+    />
+  );
+}
+
 const Welcome = () => {
 
   const connectWallet = () => {
 
   }
 
+  const handleSubmit = () => {
+
+  }
+
+  const handleChange = () => {
+
+  }
+
   return (
     <div className="flex w-full justify-center items-center">
-      <div className="flex md:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
-        <div  className="flex flex-1 justify-start flex-col md:mr-10">
+      <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
+        <div  className="flex flex-1 justify-start flex-col mf:mr-10">
           
           <h1 className="text-5xl sm:text-5xl text-white text-gradient py-1">
             Send Crypto <br/> across the internet
@@ -46,16 +67,47 @@ const Welcome = () => {
 
         </div>
 
-        <div className="flex flex-col flex-1 items-center justify-start w-full md:mt-0 mt-10">
+        <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
           <div className="p-3 justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-72 my-5 eth-card white-glassmorphism">
             <div className="flex justify-between flex-col w-full h-full">
               <div className="flex justify-between items-start">
                 <div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
                   <SiEthereum fontSize={21} color="#fff"/>
                 </div>
+                <BsInfoCircle fontSize={17} color="#fff"/>
+              </div>
+              <div>
+                <p className="text-white font-light text-sm">
+                  Address
+                </p>
+                <p className="text-white font-semibold text-md mt-0">
+                  Ethereum
+                </p>
               </div>
             </div>
           </div>
+
+          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+            {Input("Address to", "addressTo", "text", null, handleChange)}
+            {Input("Amount (ETH)", "amount", "number", null, handleChange)}
+            {Input("Keyword (Gif)", "keyword", "text", null, handleChange)}
+            {Input("Message", "message", "text", null, handleChange)}
+            
+            <div className="h-[1px] w-full bg-gray-400 my-2"/>
+            
+            {false ? (
+              <Loader />
+            ) : (
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="text-white font-semibold w-full my-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2952E3]"
+              >
+                Send now
+              </button>
+            )}
+          </div>
+
         </div>
 
       </div>
