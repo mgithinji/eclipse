@@ -5,6 +5,7 @@ import { BsInfoCircle } from 'react-icons/bs';
 
 import { TransactionContext } from '../context/TransactionContext';
 import { Loader } from './';
+import { shortenAddress } from '../utils/shortenAddress';
 
 const commonStyles = "flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white p-5";
 
@@ -80,8 +81,8 @@ const Welcome = () => {
                 <BsInfoCircle fontSize={17} color="#fff"/>
               </div>
               <div>
-                <p className="text-white font-light text-sm">
-                  Address
+                <p className="text-white font-light text-[9px]">
+                  {currentAccount}
                 </p>
                 <p className="text-white font-semibold text-md mt-0">
                   Ethereum
