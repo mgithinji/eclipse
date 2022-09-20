@@ -1,7 +1,9 @@
+import React, {useContext } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { SiEthereum } from 'react-icons/si';
 import { BsInfoCircle } from 'react-icons/bs';
 
+import { TransactionContext } from '../context/TransactionContext';
 import { Loader } from './';
 
 const commonStyles = "flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white p-5";
@@ -21,16 +23,15 @@ const Input = (placeholder: string, name: string, type: string, value: any, hand
 
 const Welcome = () => {
 
-  const connectWallet = () => {
+  const { connectWallet, currentAccount, formData, handleChange, sendTransaction } = useContext(TransactionContext);
 
-  }
+  const handleSubmit = (e) => {
+    const { addressTo, amount, keyword, message } = formData;
+    e.preventDefault();
 
-  const handleSubmit = () => {
+    if (!addressTo || !amount || !keyword || !message) return;
 
-  }
-
-  const handleChange = () => {
-
+    sendTransaction();
   }
 
   return (
@@ -46,15 +47,17 @@ const Welcome = () => {
             Explore, exchange, and send crypto. Connect your wallet to get started.
           </p>
           
-          <button
-            type="button"
-            onClick={connectWallet}
-            className="flex flex-row justify-center items-center my-5 bg-[#2952E3] p-3 rounded-full cursor-pointer hover:bg-[#2546BD]"
-          >
-            <p className="text-white text-base font-semibold">
-              Connect Wallet
-            </p>
-          </button>
+          {!currentAccount && (
+            <button
+              type="button"
+              onClick={connectWallet}
+              className="flex flex-row justify-center items-center my-5 bg-[#2952E3] p-3 rounded-full cursor-pointer hover:bg-[#2546BD]"
+            >
+              <p className="text-white text-base font-semibold">
+                Connect Wallet
+              </p>
+            </button>
+          )}
 
           <div className="grid sm:grid-cols-3 grid-cols-3 w-full mt-10">
             <div className={`rounded-tl-2xl ${commonStyles}`}>Reliability</div>
