@@ -14,7 +14,6 @@ const App = () => {
       <div><Services /></div>
       <div><Transactions /></div>
       <div><Footer /></div>
-      <div><Loader /></div>
       
     </div>
   );
